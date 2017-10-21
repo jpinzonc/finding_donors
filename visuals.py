@@ -68,18 +68,18 @@ def evaluate(results, accuracy, f1):
     # Super loop to plot four panels of data
     for k, learner in enumerate(results.keys()):
     	for j, metric in enumerate(['train_time', 'acc_train', 'f_train', 'pred_time', 'acc_test', 'f_test']):
-        	if j <=2:
-        		row=0
-        		col=j
-        	else:
-        		row = 1
-        		col = j-3
+       #	if j <=2:
+       # 		row=0
+       # 		col=j
+       # 	else:
+       # 		row = 1
+       # 		col = j-3
         	for i in np.arange(3):
-        		ax[row, col].bar(i+k*bar_width, results[learner][i][metric], width = bar_width, color = colors[k])
-        		ax[row, col].set_xticks([0.45, 1.45, 2.45])
-        		ax[row, col].set_xticklabels(["1%", "10%", "100%"])
-        		ax[row, col].set_xlabel("Training Set Size")
-        		ax[row, col].set_xlim((-0.1, 3.0))
+        		ax[j//3, j%3].bar(i+k*bar_width, results[learner][i][metric], width = bar_width, color = colors[k])
+        		ax[j//3, j%3].set_xticks([0.45, 1.45, 2.45])
+        		ax[j//3, j%3].set_xticklabels(["1%", "10%", "100%"])
+        		ax[j//3, j%3].set_xlabel("Training Set Size")
+        		ax[j//3, j%3].set_xlim((-0.1, 3.0))
     
     # Add unique y-labels
     ax[0, 0].set_ylabel("Time (in seconds)")
